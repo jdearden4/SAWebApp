@@ -1,0 +1,17 @@
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%; }
+.search {
+    position: absolute;
+    background-color: white;
+    height: 300px;
+    width: 300px;
+    border: 10px;
+    border-color: navy;
+    margin: auto;
+    margin-top: 200px;
+    z-index:1;
+}
+.map2 {
+    position: absolute;
+    z-index: 2;
+}
