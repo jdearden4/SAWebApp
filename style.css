@@ -3,29 +3,63 @@ body { margin:0; padding:0; }
 .search {
     position: absolute;
     background-color: white;
-    height: 300px;
-    width: 300px;
-    border: 10px;
+    height: 350px;
+    width: 250px;
+    border: 8px;
     border-style: solid;
     border-radius: 15%;
-    border-color: navy;
+    border-color: #304C87;
     margin: auto;
     margin-top: 200px;
+    margin-left: 20px;
+    font-size: 20px;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
     z-index:1;
+}
+
+.search h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  text-align: center;
+  font-size: 28px;
 }
 .map2 {
     position: absolute;
-    z-index: 2;
+    z-index: 3;
+}
+
+.nav-bar {
+  z-index: 2 !important;
+}
+
+#filter-search {
+  margin-left: 30px;
+  background-color: #3498DB;
+  padding-left: 70px;
+  padding-right: 70px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  color: white;
+  border: solid;
+  border-color: #3498DB;
+  border-radius: 15%;
+  font-size: 16px;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 
+.search ul {
+  list-style-image: url('images/camel.png');
+}
 
 
 
 .dropbtn {
     background-color: #3498DB;
     color: white;
-    padding: 16px;
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 3px;
+    padding-bottom: 3px;
     font-size: 16px;
     border: none;
     cursor: pointer;
