@@ -1,0 +1,75 @@
+.nav-bar {
+	background-color: #304C87;
+	height: 8%;
+	width: 100%;
+	position: absolute;
+
+}
+
+.nav-bar .button{
+	background-color: white;
+}
+
+.title h1{
+	color: #304C87;
+}
+
+.title {
+	margin-top: 2%;
+	text-align: center;
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	line-height: 10px;
+}
+
+.info {
+	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+	width: 95%;
+	font-size: 12px;
+	/*display: absolute;*/
+	margin: auto;
+	margin-top: 2%;
+	border-width: 6px;
+	border-style: solid;
+	border-color: #304C87;
+	border-radius: 2%;
+	padding: 1%;
+}
+
+.info h5 {
+	color: #304C87;
+	font-size: 15px;
+}
+
+.info .column1 {
+	display: inline-block;
+ 	width: 33%;
+ 	height: auto;
+}
+
+.info .column1 ul {
+	 padding-left: 4%;
+}
+
+.info .column2 {
+	display: inline-block;
+ 	width: 33%;
+ 	height: auto;
+}
+
+.info .column3 {
+	display: inline-block;
+ 	width: 33%;
+ 	height: auto;
+}
+
+#creditinfo {
+	color: red;
+	font-weight: bold;
+}
+
+
+#studentimages img{
+	width: auto;
+	height: 400px;
+}
+
