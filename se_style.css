@@ -24,7 +24,7 @@
 .info {
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	width: 95%;
-	font-size: 12px;
+	font-size: 16px;
 	/*display: absolute;*/
 	margin: auto;
 	margin-top: 2%;
@@ -35,9 +35,9 @@
 	padding: 1%;
 }
 
-.info h5 {
+.info h4 {
 	color: #304C87;
-	font-size: 15px;
+	font-size: 18px;
 }
 
 .info .column1 {
@@ -47,29 +47,34 @@
 }
 
 .info .column1 ul {
-	 padding-left: 4%;
+	 padding-left: 8%;
+	 padding-right: 10%;
 }
 
 .info .column2 {
 	display: inline-block;
  	width: 33%;
- 	height: auto;
+	height: auto;
+	font-size: 16px;
 }
 
 .info .column3 {
 	display: inline-block;
  	width: 33%;
- 	height: auto;
+	height: auto;
+	font-size: 16px;
 }
+
 
 #creditinfo {
 	color: red;
 	font-weight: bold;
+	padding-right: 10%;
 }
 
 
 #studentimages img{
-	width: auto;
-	height: 400px;
+	width: 24.8%;
+	height: 600px;
 }
 

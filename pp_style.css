@@ -26,26 +26,38 @@ body {
 
 /* ------------------------------------------------------------------ */
 .left-content {
-    display: inline-block;
+    display: block;
+    float: left;
     width: 48%;
-    margin-top: 2%;
+    margin-top: 5%;
 }
 
-.left-content h1 {
+.left-header {
+    display: block;
+    height: 200px;
+}
+
+.left-header h1 {
     margin-left: 8%;
     margin-bottom: 0%;
+    margin-top: 8%;
     color: #304C87;
     float: left;
 }
 
+.left-content div {
+    display: block;
+}
+
 .city-info {
-    display: inline-block;
+    display: block;
     width: 90%;
     border: 5px;
     border-style: solid;
     border-color: #304C87;
     padding: 2%;
     margin: 1%;
+    
 }
 
 .city-info h4 {
@@ -62,8 +74,9 @@ body {
 /* ------------------------------------------------------------------ */
 .right-content {
     display: inline-block;
+    float: right;
     width: 48%;
-    margin-top: 8%;
+    margin-top: 3%;
 }
 
 #main-photo {
