@@ -6,8 +6,16 @@
 
 }
 
-.nav-bar .button{
-	background-color: white;
+.nav-bar button {
+    background-color: white !important;
+    width: 10%;
+    position: relative;
+    color: black;
+    font-size: 100%;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    padding: 0.2% 0.5%;
+    margin-top: 1%;
+    margin-left: 2%;
 }
 
 .title h1{
@@ -25,7 +33,6 @@
 	font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 	width: 95%;
 	font-size: 16px;
-	vertical-align: top;
 	/*display: absolute;*/
 	margin: auto;
 	margin-top: 2%;
@@ -34,10 +41,6 @@
 	border-color: #304C87;
 	border-radius: 2%;
 	padding: 1%;
-}
-
-.info div {
-	vertical-align: top;
 }
 
 .info h4 {
