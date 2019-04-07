@@ -9,13 +9,17 @@
   <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.js'></script>
   <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.49.0/mapbox-gl.css' rel='stylesheet' />
-
+  <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+  <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet' />
   <!-- rel=relationship type=what youre coding in href=name of the file-->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
   <link rel="stylesheet"type="text/css" href="style.css">
 </head>
 
 <body>
   <div id='map'></div>
+
+  <div class="container-fluid">
 
   <!-- use database to populate markers -->
   <script class="map2">
@@ -26,8 +30,8 @@
   center: [-55.933, 0.000],
   zoom: 0.34
   });
-
-  var marker = <?php
+  
+  <?php
         $db_conn = mysqli_connect("localhost", "root", ""); //database connection    
         mysqli_select_db($db_conn, "saimapdi_studentinfosa"); //select database
 
@@ -48,22 +52,53 @@
             $country = $row["Country"];
             $latitude = $row["Latitude"];
             $longitude = $row["Longitude"];
-            echo "var popup = new mapboxgl.Popup({ offset: 25 })
-            .setText('Construction on the Washington Monument began in 1848.');";
-            echo "var el = document.createElement('div');
-            el.id = 'marker';";
+            // pull institution names by city to create links for program pages
+            $cmd_prgm = "SELECT * FROM `SA Institution Info` WHERE `City`= '".$city."'";
+            $result_prgm = mysqli_query($db_conn, $cmd_prgm);
+            
+            // pull images by city to display in popup 
+            $cmd_img = "SELECT * FROM `SA Images` WHERE `City`= '".$city."'";
+            $result_img = mysqli_query($db_conn, $cmd_img);
+            $row_img = $result_img->fetch_assoc();
+            $pop_text = '<div class="row">';
+
+            $pop_text.='<div class="col-sm-3">';
+            $pop_text.= '<img class="pop-imgs" src="data:image/jpeg;base64,'.base64_encode( $row_img['Image'] ).'"/>';
+            $pop_text.='</div>';
+
+            $pop_text.='<div class="col-sm-9">';
+            $pop_text.= '<ol>';
+
+            // // append every institution associated with current city
+            while ($row_prgm = $result_prgm->fetch_assoc()) {
+              //intialize variable to hold program names
+              $prgm_link = $row_prgm["Program"];
+              $pop_text.= '<li><a href="" data-toggle="modal" data-target=".bd-example-modal-xl">'.$prgm_link.'<a></li>';
+            }
+
+            $pop_text.='</ol>';
+            $pop_text.='</div>';
+            $pop_text.='</div>';
+
+
+            // add institution names to pop up
+            echo "var popup = new mapboxgl.Popup({ offset: 25 }) .setHTML('".$pop_text."');";
+            // echo "var popup = new mapboxgl.Popup({ offset: 25 }) .setText('James Lee');";
+
+            // create map pin
             echo "new mapboxgl.Marker({color: '#FF4929'}) .setLngLat([$longitude, $latitude]) .setPopup(popup) .addTo(map);" ;
         }
 
     ?>
 
   </script>
+  </div>
 
   <div class="nav-bar">
     <!--
     <img src="images/logo.jpeg" alt="">
     -->
-    <button type="button" id="help-btn"><b>Help</b></button>
+    <button type="button" id="help-btn" data-toggle="modal" data-target=".bd-example-modal-lg"><b>Help</b></button>
     <button type="button" id="filter-btn"><b>Search By</b></button>
   </div>
 
@@ -101,7 +136,38 @@
 
     <button id="filter-search" type="button">Search</button>
     <!-- <input type="submit" value="Search"> -->
+  </div>
 
+    <!-- program pages -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-xl">Extra large modal</button> -->
+  <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="myExtraLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        Hello Julia <3
+      </div>
+    </div>
+  </div>
+
+  <!-- help window -->
+  <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg">Large modal</button> -->
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+        Zoom into the map and click on a camel pin to learn about different program options!
+      </div>
+    </div>
   </div>
 
   <!-- js for major button -->
@@ -128,36 +194,16 @@
       }
   </script>
 
-<!--
-<script>
-    /* When the user clicks on the button,
-    toggle between hiding and showing the dropdown content */
-    function myFunction() {
-      document.getElementById("myDropdown").classList.toggle("show");
-    }
-    
-    function filterFunction() {
-      var input, filter, ul, li, a, i;
-      input = document.getElementById("myInput");
-      filter = input.value.toUpperCase();
-      div = document.getElementById("myDropdown");
-      a = div.getElementsByTagName("a");
-      for (i = 0; i < a.length; i++) {
-        txtValue = a[i].textContent || a[i].innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          a[i].style.display = "";
-        } else {
-          a[i].style.display = "none";
-        }
-      }
-    }
-</script>
--->
+  <!-- <script>
+    $('#myModal').on('shown.bs.modal', function () {
+      $('#myInput').trigger('focus')
+    })
+  </script> -->
 
-
-
-
-
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="map.js"></script>
 </body>
 
 </html>
